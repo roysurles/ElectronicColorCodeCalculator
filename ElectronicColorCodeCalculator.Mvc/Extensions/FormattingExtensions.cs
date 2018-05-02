@@ -38,7 +38,7 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
                 return string.Concat(decimalValue.ToFormattedDecimalString(), WhiteSpaceString, OhmsString, WhiteSpaceString, TwentyPercentPlusMinusToleranceString);
 
             // try to get band D color from input; if not found, then throw exception since the user tried to submit -- this should not occur
-            var bandDcolor = fourColorCodeBandsViewModel.BandDAvailableColors.FirstOrDefault(x => Equals(x.Name, bandDColor));
+            var bandDcolor = fourColorCodeBandsViewModel.BandDAvailableColors.FirstOrDefault(x => string.Equals(x.Name, bandDColor, StringComparison.OrdinalIgnoreCase));
             if (bandDcolor == null)
                 throw new InvalidOperationException($"{bandDColor} is not an available color for Band D.");
 
@@ -53,14 +53,14 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
 
             var resultString = string.Concat(decimalValue.Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix));
 
-            if (decimalValue >= 1_000_000_000)
-                resultString = string.Concat((decimalValue / 1_000_000_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), GigaSuffixString);
+            if (decimalValue >= 1_000)
+                resultString = string.Concat((decimalValue / 1_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), KiloSuffixString);
 
             if (decimalValue >= 1_000_000)
                 resultString = string.Concat((decimalValue / 1_000_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), MegaSuffixString);
 
-            if (decimalValue >= 1_000)
-                resultString = string.Concat((decimalValue / 1_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), KiloSuffixString);
+            if (decimalValue >= 1_000_000_000)
+                resultString = string.Concat((decimalValue / 1_000_000_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), GigaSuffixString);
 
             return resultString;
         }

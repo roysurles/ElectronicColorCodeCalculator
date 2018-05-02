@@ -18,12 +18,12 @@ namespace ElectronicColorCodeCalculator.Core.Calculators.OhmValueCalculator
                 return null;
 
             // try to get each band's color
-            var bandAcolor = _colorCodeBandsViewModel.BandAAvailableColors.FirstOrDefault(x => Equals(x.Name, bandAColor));
-            var bandBcolor = _colorCodeBandsViewModel.BandBAvailableColors.FirstOrDefault(x => Equals(x.Name, bandBColor));
-            var bandCcolor = _colorCodeBandsViewModel.BandCAvailableColors.FirstOrDefault(x => Equals(x.Name, bandCColor));
+            var bandAcolor = _colorCodeBandsViewModel.BandAAvailableColors.FirstOrDefault(x => string.Equals(x.Name, bandAColor, StringComparison.OrdinalIgnoreCase));
+            var bandCcolor = _colorCodeBandsViewModel.BandCAvailableColors.FirstOrDefault(x => string.Equals(x.Name, bandCColor, StringComparison.OrdinalIgnoreCase));
+            var bandBcolor = _colorCodeBandsViewModel.BandBAvailableColors.FirstOrDefault(x => string.Equals(x.Name, bandBColor, StringComparison.OrdinalIgnoreCase));
             var bandDcolor = string.IsNullOrWhiteSpace(bandDColor)
                 ? default(IColorCodeBandModel)
-                : _colorCodeBandsViewModel.BandDAvailableColors.FirstOrDefault(x => Equals(x.Name, bandDColor));
+                : _colorCodeBandsViewModel.BandDAvailableColors.FirstOrDefault(x => string.Equals(x.Name, bandDColor, StringComparison.OrdinalIgnoreCase));
 
             // validation: check the first 3 bands are available in corresponding bands 
             // the 4'th band is optional so, only check the 4th band if it was supplied
