@@ -10,7 +10,7 @@ namespace ElectronicColorCodeCalculator.Core.UnitTests.Calculators.OhmValueCalcu
         public FourBandResistorCalculatorTests(ITestOutputHelper output) : base(output) { }
 
 
-        [Theory(DisplayName = "CalculateOhmValue_InvalidInput_ShouldNotThrowException")]
+        [Theory(DisplayName = "CalculateOhmValue_MissingInput_ShouldReturnNull")]
         [Trait("Description", "Verify CalculateOhmValue does not throw exception for bad input")]
         [Trait("Category", "Unit")]
         [InlineData(null, null, null, null)]
@@ -23,7 +23,26 @@ namespace ElectronicColorCodeCalculator.Core.UnitTests.Calculators.OhmValueCalcu
         [InlineData("", "", "Brown", "")]
         [InlineData(null, null, null, "Brown")]
         [InlineData("", "", "", "Brown")]
-        public void CalculateOhmValue_InvalidInput_ShouldNotThrowException(
+        public void CalculateOhmValue_MissingInput_ShouldReturnNull(
+            string bandAColor, string bandBColor, string bandCColor, string bandDColor)
+        {
+            // Arrange
+            var calculator = Container.GetInstance<IOhmValueCalculator>();
+
+            // Act
+            var result = calculator.CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor);
+
+            // Assert
+            result.Should().Be(null);
+        }
+
+        [Theory(DisplayName = "CalculateOhmValue_InvalidInput_ShouldReturnNull")]
+        [Trait("Description", "Verify CalculateOhmValue does not throw exception for bad input")]
+        [Trait("Category", "Unit")]
+        [InlineData("Black", "Red", "Red", "Red")]
+        [InlineData("Brown", "Gold", "Red", "Red")]
+        [InlineData("Brown", "Red", "Red", "Black")]
+        public void CalculateOhmValue_InvalidInput_ShouldReturnNull(
             string bandAColor, string bandBColor, string bandCColor, string bandDColor)
         {
             // Arrange
