@@ -1,0 +1,114 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+.Pink {
+    color: black;
+    background-color: pink;
+    font-family: Courier New;
+}
+
+.Silver {
+    color: black;
+    background-color: silver;
+    font-family: Courier New;
+}
+
+.Gold {
+    color: black;
+    background-color: gold;
+    font-family: Courier New;
+}
+
+.Black {
+    color: white;
+    background-color: black;
+    font-family: Courier New;
+}
+
+.Brown {
+    color: white;
+    background-color: brown;
+    font-family: Courier New;
+}
+
+.Red {
+    color: white;
+    background-color: red;
+    font-family: Courier New;
+}
+
+.Orange {
+    color: black;
+    background-color: orange;
+    font-family: Courier New;
+}
+
+.Yellow {
+    color: black;
+    background-color: yellow;
+    font-family: Courier New;
+}
+
+.Green {
+    color: white;
+    background-color: green;
+    font-family: Courier New;
+}
+
+.Blue {
+    color: white;
+    background-color: blue;
+    font-family: Courier New;
+}
+
+.Violet {
+    color: white;
+    background-color: violet;
+    font-family: Courier New;
+}
+
+.Gray {
+    color: white;
+    background-color: gray;
+    font-family: Courier New;
+}
+
+.White {
+    color: black;
+    background-color: white;
+    font-family: Courier New;
+}
+

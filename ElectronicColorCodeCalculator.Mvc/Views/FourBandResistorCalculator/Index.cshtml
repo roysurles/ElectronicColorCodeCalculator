@@ -1,0 +1,128 @@
+﻿@using ElectronicColorCodeCalculator.Mvc.Extensions
+@using ElectronicColorCodeCalculator.Core.Models.ColorCodeBand
+@model IFourColorCodeBandsViewModel
+
+@{
+    ViewData["Title"] = "4 Band Resistor Color Code Calculator";
+}
+
+<div class="row">
+    <h4>Select the color of <u><i><strong>each</strong></i></u> band on the resistor:</h4>
+
+    <div class="form-group row"></div>
+
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Band A Significant Figure:</label>
+        <div class="col-sm-3">
+            <select id="bandASelect"
+                    class="form-control White"
+                    onchange="selectChange(this);">
+                <option class="White" value="">-- Select a Color --</option>
+                @foreach (var color in Model.BandAAvailableColors)
+                {
+                    <option class="@color.Name" value="@color.Name">@color.ToFormattedNameWithSignificantFigureHtml()</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Band B Significant Figure:</label>
+        <div class="col-sm-3">
+            <select id="bandBSelect"
+                    class="form-control White"
+                    onchange="selectChange(this);">
+                <option class="White" value="">-- Select a Color --</option>
+                @foreach (var color in Model.BandBAvailableColors)
+                {
+                    <option class="@color.Name" value="@color.Name">@color.ToFormattedNameWithSignificantFigureHtml()</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Band C Multiplier:</label>
+        <div class="col-sm-3">
+            <select id="bandCSelect"
+                    class="form-control White"
+                    onchange="selectChange(this);">
+                <option class="White" value="">-- Select a Color --</option>
+                @foreach (var color in Model.BandCAvailableColors)
+                {
+                    <option class="@color.Name" value="@color.Name">@color.ToFormattedMulitplierHtml()</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Band D Tolerance:</label>
+        <div class="col-sm-3">
+            <select id="bandDSelect"
+                    class="form-control White"
+                    onchange="selectChange(this);">
+                <option class="White" value="">-- Select a Color --</option>
+                @foreach (var color in Model.BandDAvailableColors)
+                {
+                    <option class="@color.Name" value="@color.Name">@color.ToFormattedToleranceHtml()</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label"><strong>Resistor Value:</strong></label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control White" id="resistorValue" readonly />
+        </div>
+    </div>
+
+</div>
+
+@section scripts {
+    <script>
+
+        function selectChange(select) {
+            $('#resistorValue').val('');
+
+            setSelectClass(select);
+            getCalulatedResult();
+        }
+
+        function setSelectClass(select) {
+            let css = 'form-control';
+
+            if (select.selectedIndex > 0) {
+                css = css + ' ' + select.value;
+            }
+
+            select.setAttribute('class', css)
+        }
+
+        function getCalulatedResult() {
+            if ($('#bandASelect option:selected').index() == 0
+                | $('#bandBSelect option:selected').index() == 0
+                | $('#bandCSelect option:selected').index() == 0) {
+                {
+                    return;
+                }
+            }
+
+            let jqxhr = $.post("/FourBandResistorCalculator/Calculate",
+                {
+                    bandAColor: $('#bandASelect').val(),
+                    bandBColor: $('#bandBSelect').val(),
+                    bandCColor: $('#bandCSelect').val(),
+                    bandDColor: $('#bandDSelect').val()
+                })
+                .done(function (data) {
+                    $('#resistorValue').val(data);
+                })
+                .fail(function (data) {
+                    alert("We're sorry, but an unhandled error occurred.  Please reload the page and try again.");
+                });
+        }
+
+    </script>
+}
