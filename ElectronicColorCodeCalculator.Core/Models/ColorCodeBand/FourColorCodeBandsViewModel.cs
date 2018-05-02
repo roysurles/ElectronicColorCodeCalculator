@@ -9,7 +9,11 @@ namespace ElectronicColorCodeCalculator.Core.Models.ColorCodeBand
         public FourColorCodeBandsViewModel(params IColorCodeBandModel[] colorCodeBandModels)
         {
             if (colorCodeBandModels.Any(x => string.IsNullOrWhiteSpace(x.Name)))
-                throw new ArgumentNullException("colorCodeBandModel.Name", "colorCodeBandModel.Name cannot be null or empty string.");
+                throw new InvalidOperationException("All ColorCodeBandModel Names cannot be null or empty string.");
+
+            var duplicates = colorCodeBandModels.GroupBy(x => x.Name.ToLower()).Where(g => g.Count() > 1).Select(g => g.Key);
+            if (duplicates.Any())
+                throw new InvalidOperationException($"Duplicate colors are not allowed.  The following colors are duplicated: {string.Join(",", duplicates)}");
 
             BandAAvailableColors = colorCodeBandModels
                 .Where(x => x.SignificantFigure.HasValue && x.SignificantFigure > 0)
