@@ -5,7 +5,7 @@ Note:  changed return type of IOhmValueCalculator.CalculateOhmValue to nullable 
 2) decimal values for decimal multipliers
 3) values larger than int.MaxValue
 
-Needed:
+Pre-Reqs.:
 1) .net core 2.0
 2) visual studio 2017 with latest updates
 
