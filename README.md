@@ -1,6 +1,6 @@
 # ElectronicColorCodeCalculator
 
-# Note:  changed return type of IOhmValueCalculator.CalculateOhmValue to nullable decimal to allow:
+Note:  changed return type of IOhmValueCalculator.CalculateOhmValue to nullable decimal to allow:
 1) null when unable to calculate (i.e bad input)
 2) decimal values for decimal multipliers
 3) values larger than int.MaxValue
