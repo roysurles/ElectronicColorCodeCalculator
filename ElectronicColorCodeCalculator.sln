@@ -13,6 +13,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1A92601D-A99
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D7D387A8-59EC-4A82-BDD2-68A2D0E16492}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CF3248AF-AF0B-44A3-A0BB-3A85F589110B}"
+	ProjectSection(SolutionItems) = preProject
+		ElectronicColorCodeCalculator\LICENSE = ElectronicColorCodeCalculator\LICENSE
+		ElectronicColorCodeCalculator\README.md = ElectronicColorCodeCalculator\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
