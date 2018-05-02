@@ -1,4 +1,4 @@
-# ElectronicColorCodeCalculator
+# Electronic Color Code Calculator
 
 Note:  changed return type of IOhmValueCalculator.CalculateOhmValue to nullable decimal to allow:
 1) null when unable to calculate (i.e bad input)
