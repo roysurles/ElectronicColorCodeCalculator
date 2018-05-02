@@ -12,7 +12,7 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
         public const string PlusMinusString = "\u00B1";
         public const string OhmSignString = "\u2126";
         public const string MultiplyString = "x";
-        public const string OhmString = "Ohms";
+        public const string OhmsString = "Ohms";
         public const string KiloSuffixString = "k";
         public const string MegaSuffixString = "M";
         public const string GigaSuffixString = "G";
@@ -35,7 +35,7 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
 
             // if there is no selected bandDColor, then just return default of plus minus 20% 
             if (string.IsNullOrWhiteSpace(bandDColor))
-                return string.Concat(decimalValue.ToFormattedDecimalString(), WhiteSpaceString, OhmString, WhiteSpaceString, TwentyPercentPlusMinusToleranceString);
+                return string.Concat(decimalValue.ToFormattedDecimalString(), WhiteSpaceString, OhmsString, WhiteSpaceString, TwentyPercentPlusMinusToleranceString);
 
             // try to get band D color from input; if not found, then throw exception since the user tried to submit -- this should not occur
             var bandDcolor = fourColorCodeBandsViewModel.BandDAvailableColors.FirstOrDefault(x => Equals(x.Name, bandDColor));
@@ -43,7 +43,7 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
                 throw new InvalidOperationException($"{bandDColor} is not an available color for Band D.");
 
             // return the fully formatted string
-            return string.Concat(decimalValue.ToFormattedDecimalString(), WhiteSpaceString, OhmString, WhiteSpaceString, bandDcolor.Tolerance.Value.ToString(PercentFormatString));
+            return string.Concat(decimalValue.ToFormattedDecimalString(), WhiteSpaceString, OhmsString, WhiteSpaceString, bandDcolor.Tolerance.Value.ToString(PercentFormatString));
         }
 
         public static string ToFormattedDecimalString(this decimal? decimalValue, bool addSpaceBeforeSuffix = false)
