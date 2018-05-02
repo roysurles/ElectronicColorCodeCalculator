@@ -53,14 +53,14 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
 
             var resultString = string.Concat(decimalValue.Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix));
 
-            if (decimalValue >= 1_000)
-                resultString = string.Concat((decimalValue / 1_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), KiloSuffixString);
+            if (decimalValue >= 1_000_000_000)
+                resultString = string.Concat((decimalValue / 1_000_000_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), GigaSuffixString);
 
             if (decimalValue >= 1_000_000)
                 resultString = string.Concat((decimalValue / 1_000_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), MegaSuffixString);
 
-            if (decimalValue >= 1_000_000_000)
-                resultString = string.Concat((decimalValue / 1_000_000_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), GigaSuffixString);
+            if (decimalValue >= 1_000)
+                resultString = string.Concat((decimalValue / 1_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), KiloSuffixString);
 
             return resultString;
         }
