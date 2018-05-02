@@ -36,11 +36,6 @@ namespace ElectronicColorCodeCalculator.Core.Calculators.OhmValueCalculator
             var significantFigures = string.Concat(bandAcolor.SignificantFigure, bandBcolor.SignificantFigure);
             var significantFiguresAsInt = Convert.ToInt32(significantFigures);
 
-            // TODO: changing return type to nullable decimal to allow:
-            //      1) null when unable to calculate (i.e bad input)
-            //      2) decimal values for decimal multipliers
-            //      3) values larger than int.MaxValue
-
             return significantFiguresAsInt * bandCcolor.Multiplier;
         }
     }
