@@ -7,18 +7,18 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
 {
     public static class FormattingExtensions
     {
-        public const string WhiteSpaceString = " ";
-        public const string HtmlWhiteSpaceString = "&nbsp;";
-        public const string PlusMinusString = "\u00B1";
-        public const string OhmSignString = "\u2126";
-        public const string MultiplyString = "x";
-        public const string OhmsString = "Ohms";
-        public const string KiloSuffixString = "k";
-        public const string MegaSuffixString = "M";
-        public const string GigaSuffixString = "G";
-        public const string NumberFormatString = "#,##0.###";
-        public const string PercentFormatString = "#,##0.###%";
-        public const string TwentyPercentPlusMinusToleranceString = PlusMinusString + "20%";
+        public static string WhiteSpaceString { get; } = " ";
+        public static string HtmlWhiteSpaceString { get; } = "&nbsp;";
+        public static string PlusMinusString { get; } = "\u00B1";
+        public static string OhmSignString { get; } = "\u2126";
+        public static string MultiplyString { get; } = "x";
+        public static string OhmsString { get; } = "Ohms";
+        public static string KiloSuffixString { get; } = "k";
+        public static string MegaSuffixString { get; } = "M";
+        public static string GigaSuffixString { get; } = "G";
+        public static string NumberFormatString { get; } = "#,##0.###";
+        public static string PercentFormatString { get; } = "#,##0.###%";
+        public static string TwentyPercentPlusMinusToleranceString { get; } = PlusMinusString + "20%";
 
         public static string ToFormattedNameWithSignificantFigureHtml(this IColorCodeBandModel model) =>
             WebUtility.HtmlDecode($"{model.Name.PadRight(19)}{model.SignificantFigure}".Replace(WhiteSpaceString, HtmlWhiteSpaceString));
