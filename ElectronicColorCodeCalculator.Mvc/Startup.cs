@@ -19,6 +19,9 @@ namespace ElectronicColorCodeCalculator.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // TODO: there is probably a slick way to get all concrete classes
+            // that implement IColorCodeBandModel and inject as an array
+
             // Models \ ColorCodeBand            
             services.AddTransient<IFourColorCodeBandsViewModel>((x) =>
                 new FourColorCodeBandsViewModel(

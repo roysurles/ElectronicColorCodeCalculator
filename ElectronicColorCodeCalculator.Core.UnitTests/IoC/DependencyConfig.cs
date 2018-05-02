@@ -13,6 +13,9 @@ namespace ElectronicColorCodeCalculator.Core.UnitTests.IoC
             container.Options.SuppressLifestyleMismatchVerification = true;
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
+            // TODO: there is probably a slick way to get all concrete classes
+            // that implement IColorCodeBandModel and inject as an array
+
             // Models \ ColorCodeBand
             container.Register<IFourColorCodeBandsViewModel>(() => new FourColorCodeBandsViewModel(
                 new BlackColorCodeBandModel() as IColorCodeBandModel
