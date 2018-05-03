@@ -19,6 +19,6 @@ namespace ElectronicColorCodeCalculator.Mvc.Controllers
         [HttpPost]
         public IActionResult Calculate(string bandAColor, string bandBColor, string bandCColor, string bandDColor) =>
             Json(_fourBandResistorCalculator.CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor)
-                .ToFormattedOhmsResult(bandDColor, HttpContext.RequestServices.GetService(typeof(IFourColorCodeBandsViewModel)) as IFourColorCodeBandsViewModel));
+                .ToFormattedOhms(bandDColor, HttpContext.RequestServices.GetService(typeof(IFourColorCodeBandsViewModel)) as IFourColorCodeBandsViewModel));
     }
 }

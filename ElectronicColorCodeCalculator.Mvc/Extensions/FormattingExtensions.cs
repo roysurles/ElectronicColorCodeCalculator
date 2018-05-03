@@ -18,7 +18,7 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
         public static string GigaSuffixString { get; } = "G";
         public static string NumberFormatString { get; } = "#,##0.###";
         public static string PercentFormatString { get; } = "#,##0.###%";
-        public static string TwentyPercentPlusMinusToleranceString { get; } = PlusMinusString + "20%";
+        public static string TwentyPercentPlusMinusToleranceString { get; } = $"{PlusMinusString} 20%";
 
         public static string ToFormattedNameWithSignificantFigureHtml(this IColorCodeBandModel model) =>
             WebUtility.HtmlDecode($"{model.Name.PadRight(19)}{model.SignificantFigure}".Replace(WhiteSpaceString, HtmlWhiteSpaceString));
@@ -27,7 +27,7 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
                 .Replace(WhiteSpaceString, HtmlWhiteSpaceString));
         public static string ToFormattedToleranceHtml(this IColorCodeBandModel model) =>
             WebUtility.HtmlDecode($"{model.Name.PadRight(11)}{string.Concat(PlusMinusString, WhiteSpaceString, model.Tolerance.Value.ToString(PercentFormatString)).PadLeft(9)}".Replace(WhiteSpaceString, HtmlWhiteSpaceString));
-        public static string ToFormattedOhmsResult(this decimal? decimalValue, string bandDColor, IFourColorCodeBandsViewModel fourColorCodeBandsViewModel)
+        public static string ToFormattedOhms(this decimal? decimalValue, string bandDColor, IFourColorCodeBandsViewModel fourColorCodeBandsViewModel)
         {
             // if no value then just return null
             if (!decimalValue.HasValue)
