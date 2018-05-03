@@ -2,6 +2,9 @@
 using ElectronicColorCodeCalculator.Core.Models.ColorCodeBand;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ElectronicColorCodeCalculator.Core.UnitTests.IoC
 {
@@ -13,25 +16,16 @@ namespace ElectronicColorCodeCalculator.Core.UnitTests.IoC
             container.Options.SuppressLifestyleMismatchVerification = true;
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
 
-            // TODO: there is probably a slick way to get all concrete classes
-            // that implement IColorCodeBandModel and inject as an array
-
             // Models \ ColorCodeBand
-            container.Register<IFourColorCodeBandsViewModel>(() => new FourColorCodeBandsViewModel(
-                new BlackColorCodeBandModel() as IColorCodeBandModel
-                , new BlueColorCodeBandModel() as IColorCodeBandModel
-                , new BrownColorCodeBandModel() as IColorCodeBandModel
-                , new GoldColorCodeBandModel() as IColorCodeBandModel
-                , new GrayColorCodeBandModel() as IColorCodeBandModel
-                , new GreenColorCodeBandModel() as IColorCodeBandModel
-                , new OrangeColorCodeBandModel() as IColorCodeBandModel
-                , new PinkColorCodeBandModel() as IColorCodeBandModel
-                , new RedColorCodeBandModel() as IColorCodeBandModel
-                , new SilverColorCodeBandModel() as IColorCodeBandModel
-                , new VioletColorCodeBandModel() as IColorCodeBandModel
-                , new WhiteColorCodeBandModel() as IColorCodeBandModel
-                , new YellowColorCodeBandModel() as IColorCodeBandModel
-                ) as IFourColorCodeBandsViewModel, Lifestyle.Transient);
+            var excludedClassNames = new List<string> { "NoNameColorCodeBandModel" };
+            var type = typeof(IColorCodeBandModel);
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => type.IsAssignableFrom(p) && !p.IsInterface && !excludedClassNames.Contains(p.Name));
+
+            container.Register<IFourColorCodeBandsViewModel>(() =>
+                new FourColorCodeBandsViewModel(types.Select(Activator.CreateInstance).Cast<IColorCodeBandModel>().ToArray())
+                as IFourColorCodeBandsViewModel, Lifestyle.Transient);
 
             // Calculators \ IOhmValueCalculator
             container.Register<IOhmValueCalculator, FourBandResistorCalculator>();

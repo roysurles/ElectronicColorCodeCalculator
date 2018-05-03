@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
 
 namespace ElectronicColorCodeCalculator.Mvc
 {
@@ -19,26 +21,15 @@ namespace ElectronicColorCodeCalculator.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // TODO: there is probably a slick way to get all concrete classes
-            // that implement IColorCodeBandModel and inject as an array
-
             // Models \ ColorCodeBand            
+            var type = typeof(IColorCodeBandModel);
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => type.IsAssignableFrom(p) && !p.IsInterface);
+
             services.AddTransient<IFourColorCodeBandsViewModel>((x) =>
-                new FourColorCodeBandsViewModel(
-                    new BlackColorCodeBandModel() as IColorCodeBandModel
-                    , new BlueColorCodeBandModel() as IColorCodeBandModel
-                    , new BrownColorCodeBandModel() as IColorCodeBandModel
-                    , new GoldColorCodeBandModel() as IColorCodeBandModel
-                    , new GrayColorCodeBandModel() as IColorCodeBandModel
-                    , new GreenColorCodeBandModel() as IColorCodeBandModel
-                    , new OrangeColorCodeBandModel() as IColorCodeBandModel
-                    , new PinkColorCodeBandModel() as IColorCodeBandModel
-                    , new RedColorCodeBandModel() as IColorCodeBandModel
-                    , new SilverColorCodeBandModel() as IColorCodeBandModel
-                    , new VioletColorCodeBandModel() as IColorCodeBandModel
-                    , new WhiteColorCodeBandModel() as IColorCodeBandModel
-                    , new YellowColorCodeBandModel() as IColorCodeBandModel
-                ) as IFourColorCodeBandsViewModel);
+                new FourColorCodeBandsViewModel(types.Select(Activator.CreateInstance).Cast<IColorCodeBandModel>().ToArray())
+                as IFourColorCodeBandsViewModel);
 
             // Calculators \ IOhmValueCalculator
             services.AddTransient<IOhmValueCalculator, FourBandResistorCalculator>();
