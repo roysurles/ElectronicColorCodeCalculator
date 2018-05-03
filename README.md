@@ -8,7 +8,7 @@ Note:  changed return type of IOhmValueCalculator.CalculateOhmValue to nullable 
 Prerequisites:
 1) Windows 7 or Windows 10
 2) .Net Core 2.0
-3) Visual Studio 2017 with latest updates
+3) Visual Studio 2017 version 15.6.7 with latest updates
 
 To run:
 1) Download or clone project -- master branch
