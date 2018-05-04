@@ -91,10 +91,10 @@
         }
 
         function setSelectClass(select) {
-            let css = 'form-control';
+            let css = 'form-control White';
 
             if (select.selectedIndex > 0) {
-                css = css + ' ' + select.value;
+                css = 'form-control ' + select.value;
             }
 
             select.setAttribute('class', css)
