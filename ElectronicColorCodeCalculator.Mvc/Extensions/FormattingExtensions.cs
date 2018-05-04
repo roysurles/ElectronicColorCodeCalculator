@@ -51,8 +51,6 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
             if (!decimalValue.HasValue)
                 return null;
 
-            var resultString = string.Concat(decimalValue.Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix));
-
             if (decimalValue >= 1_000_000_000)
                 return string.Concat((decimalValue / 1_000_000_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), GigaSuffixString);
 
@@ -62,7 +60,7 @@ namespace ElectronicColorCodeCalculator.Mvc.Extensions
             if (decimalValue >= 1_000)
                 return string.Concat((decimalValue / 1_000).Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix), KiloSuffixString);
 
-            return resultString;
+            return string.Concat(decimalValue.Value.ToString(NumberFormatString), GetWhiteSpace(addSpaceBeforeSuffix));
         }
         public static string GetWhiteSpace(bool addWhiteSpace) =>
             addWhiteSpace
