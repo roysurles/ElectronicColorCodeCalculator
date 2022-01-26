@@ -1,5 +1,7 @@
 ﻿using ElectronicColorCodeCalculator.Core.Calculators.OhmValueCalculator;
+
 using FluentAssertions;
+
 using Xunit;
 using Xunit.Abstractions;
 
@@ -8,7 +10,6 @@ namespace ElectronicColorCodeCalculator.Core.UnitTests.Calculators.OhmValueCalcu
     public class FourBandResistorCalculatorTests : BaseTest
     {
         public FourBandResistorCalculatorTests(ITestOutputHelper output) : base(output) { }
-
 
         [Theory(DisplayName = "CalculateOhmValue_MissingInput_ShouldReturnNull")]
         [Trait("Description", "Verify CalculateOhmValue does not throw exception for bad input")]

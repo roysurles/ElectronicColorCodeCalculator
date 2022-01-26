@@ -1,6 +1,9 @@
 ﻿using ElectronicColorCodeCalculator.Core.Models.ColorCodeBand;
+
 using FluentAssertions;
+
 using System;
+
 using Xunit;
 using Xunit.Abstractions;
 
@@ -9,7 +12,6 @@ namespace ElectronicColorCodeCalculator.Core.UnitTests.Models.ColorCodeBand
     public class FourColorCodeBandsViewModelTests : BaseTest
     {
         public FourColorCodeBandsViewModelTests(ITestOutputHelper output) : base(output) { }
-
 
         [Fact(DisplayName = "Ctor_MissingNameColorCodeBandModel_ShouldThrowException")]
         [Trait("Description", "Verify ctor throws exception if any items are missing the name")]
@@ -35,7 +37,6 @@ namespace ElectronicColorCodeCalculator.Core.UnitTests.Models.ColorCodeBand
             action.Should().Throw<InvalidOperationException>();
         }
     }
-
 
     public class NoNameColorCodeBandModel : IColorCodeBandModel
     {
