@@ -6,9 +6,9 @@ Note:  changed return type of IOhmValueCalculator.CalculateOhmValue to nullable 
 3) values larger than int.MaxValue
 
 Prerequisites:
-1) Windows 7 or Windows 10
-2) .Net Core 2.0
-3) Visual Studio 2017 version 15.6.7 with latest updates
+1) Windows 10 or 11
+2) .Net 6
+3) Visual Studio 2022 with latest updates
 
 To run:
 1) Download or clone project -- master branch
