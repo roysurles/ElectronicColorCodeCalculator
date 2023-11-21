@@ -1,33 +1,28 @@
-﻿using ElectronicColorCodeCalculator.Mvc.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿namespace ElectronicColorCodeCalculator.Mvc.Controllers;
 
-namespace ElectronicColorCodeCalculator.Mvc.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return RedirectToAction("index", "FourBandResistorCalculator");
-        }
+        return RedirectToAction("index", "FourBandResistorCalculator");
+    }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
+    public IActionResult About()
+    {
+        ViewData["Message"] = "Your application description page.";
 
-            return View();
-        }
+        return View();
+    }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+    public IActionResult Contact()
+    {
+        ViewData["Message"] = "Your contact page.";
 
-            return View();
-        }
+        return View();
+    }
 
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

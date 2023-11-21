@@ -1,6 +1,7 @@
-﻿using ElectronicColorCodeCalculator.Core.Models.ColorCodeBand;
-using System;
+﻿using System;
 using System.Linq;
+
+using ElectronicColorCodeCalculator.Core.Models.ColorCodeBand;
 
 namespace ElectronicColorCodeCalculator.Core.Calculators.OhmValueCalculator
 {
@@ -22,10 +23,10 @@ namespace ElectronicColorCodeCalculator.Core.Calculators.OhmValueCalculator
             var bandCcolor = _colorCodeBandsViewModel.BandCAvailableColors.FirstOrDefault(x => string.Equals(x.Name, bandCColor, StringComparison.OrdinalIgnoreCase));
             var bandBcolor = _colorCodeBandsViewModel.BandBAvailableColors.FirstOrDefault(x => string.Equals(x.Name, bandBColor, StringComparison.OrdinalIgnoreCase));
             var bandDcolor = string.IsNullOrWhiteSpace(bandDColor)
-                ? default(IColorCodeBandModel)
+                ? default
                 : _colorCodeBandsViewModel.BandDAvailableColors.FirstOrDefault(x => string.Equals(x.Name, bandDColor, StringComparison.OrdinalIgnoreCase));
 
-            // validation: check the first 3 bands are available in corresponding bands 
+            // validation: check the first 3 bands are available in corresponding bands
             // the 4'th band is optional so, only check the 4th band if it was supplied
             if (bandAcolor == null || bandBcolor == null || bandCcolor == null
                 || (!string.IsNullOrWhiteSpace(bandDColor) && bandDcolor == null))

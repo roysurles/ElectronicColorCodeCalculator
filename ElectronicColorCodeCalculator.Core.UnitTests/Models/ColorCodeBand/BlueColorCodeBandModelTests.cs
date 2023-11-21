@@ -1,27 +1,22 @@
-﻿using ElectronicColorCodeCalculator.Core.Models.ColorCodeBand;
-using Xunit;
-using Xunit.Abstractions;
+﻿namespace ElectronicColorCodeCalculator.Core.UnitTests.Models.ColorCodeBand;
 
-namespace ElectronicColorCodeCalculator.Core.UnitTests.Models.ColorCodeBand
+public class BlueColorCodeBandModelTests : BaseColorCodeBandModelTest
 {
-    public class BlueColorCodeBandModelTests : BaseColorCodeBandModelTest
+    public BlueColorCodeBandModelTests(ITestOutputHelper output) : base(output) { }
+
+    [Fact(DisplayName = "Class_PropertSettings_ShouldBe")]
+    [Trait("Description", "Verify property settings based on: https://en.wikipedia.org/wiki/Electronic_color_code ")]
+    [Trait("Category", "Unit")]
+    public void Class_PropertSettings_ShouldBe()
     {
-        public BlueColorCodeBandModelTests(ITestOutputHelper output) : base(output) { }
+        // Arrange & Act
+        var model = new BlueColorCodeBandModel();
 
-        [Fact(DisplayName = "Class_PropertSettings_ShouldBe")]
-        [Trait("Description", "Verify property settings based on: https://en.wikipedia.org/wiki/Electronic_color_code ")]
-        [Trait("Category", "Unit")]
-        public void Class_PropertSettings_ShouldBe()
-        {
-            // Arrange & Act
-            var model = new BlueColorCodeBandModel();
-
-            // Assert
-            base.Class_PropertSettings_ShouldBe_BaseTest(model
-                , "Blue"
-                , 6
-                , 1_000_000
-                , (decimal?)0.0025);
-        }
+        // Assert
+        base.Class_PropertSettings_ShouldBe_BaseTest(model
+            , "Blue"
+            , 6
+            , 1_000_000
+            , (decimal?)0.0025);
     }
 }

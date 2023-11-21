@@ -1,21 +1,15 @@
-﻿using ElectronicColorCodeCalculator.Core.Calculators.OhmValueCalculator;
-using ElectronicColorCodeCalculator.Core.Models.ColorCodeBand;
-using ElectronicColorCodeCalculator.Mvc.Extensions;
-using Microsoft.AspNetCore.Mvc;
+﻿namespace ElectronicColorCodeCalculator.Mvc.Controllers;
 
-namespace ElectronicColorCodeCalculator.Mvc.Controllers
+public class FourBandResistorCalculatorController : Controller
 {
-    public class FourBandResistorCalculatorController : Controller
-    {
-        [HttpGet]
-        public IActionResult Index([FromServices] IFourColorCodeBandsViewModel viewModel) =>
-            View(viewModel);
+    [HttpGet]
+    public IActionResult Index([FromServices] IFourColorCodeBandsViewModel viewModel) =>
+        View(viewModel);
 
-        [HttpPost]
-        public IActionResult Calculate(string bandAColor, string bandBColor, string bandCColor, string bandDColor
-            , [FromServices] IOhmValueCalculator fourBandResistorCalculator
-            , [FromServices] IFourColorCodeBandsViewModel fourColorCodeBandsViewModel) =>
-                Json(fourBandResistorCalculator.CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor)
-                    .ToFormattedOhms(bandDColor, fourColorCodeBandsViewModel));
-    }
+    [HttpPost]
+    public IActionResult Calculate(string bandAColor, string bandBColor, string bandCColor, string bandDColor
+        , [FromServices] IOhmValueCalculator fourBandResistorCalculator
+        , [FromServices] IFourColorCodeBandsViewModel fourColorCodeBandsViewModel) =>
+            Json(fourBandResistorCalculator.CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor)
+                .ToFormattedOhms(bandDColor, fourColorCodeBandsViewModel));
 }

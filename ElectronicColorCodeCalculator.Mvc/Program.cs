@@ -1,14 +1,4 @@
-﻿using ElectronicColorCodeCalculator.Core.Calculators.OhmValueCalculator;
-using ElectronicColorCodeCalculator.Core.Models.ColorCodeBand;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-using System;
-using System.Linq;
-
+﻿
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
